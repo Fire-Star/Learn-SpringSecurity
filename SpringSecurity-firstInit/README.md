@@ -45,6 +45,7 @@ _学习SpringSecurity时，写的小案例。_
       <version>${springSecurity.version}</version>
 </dependency>
 ```
+<<<<<<< HEAD
 
 ## 在web.xml中引入SpringSecurity
 
@@ -153,3 +154,5 @@ SpringSecurity的命名空间配置可以写入Spring的配置文件中，所以
 ```
 
 最后你只需要运行项目就能够看到效果了。
+=======
+>>>>>>> 5f071671f8cbb230bd26cdc88b9ab3c64b981127
