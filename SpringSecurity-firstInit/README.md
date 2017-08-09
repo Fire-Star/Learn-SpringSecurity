@@ -1,12 +1,12 @@
 # Learn-SpringSecurity
 _学习SpringSecurity时，写的小案例。_
 
-###已达目标：
+### 已达目标：
 
 现在配置了SpringSecurity的基本东西，通过命名空间的方式。
 现在开始SpringSecurity教学。
 
-##Maven导包
+## Maven导包
 通过Maven方式导入SpringSecurity的包。
 
 代码：
