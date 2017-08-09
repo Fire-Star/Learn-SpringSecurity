@@ -10,7 +10,7 @@ _学习SpringSecurity时，写的小案例。_
 通过Maven方式导入SpringSecurity的包。
 
 
-`
+```
 
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -44,4 +44,4 @@ _学习SpringSecurity时，写的小案例。_
       <artifactId>spring-security-web</artifactId>
       <version>${springSecurity.version}</version>
 </dependency>
-`
+```
