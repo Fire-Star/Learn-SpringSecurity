@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!-- 配置不过滤的资源（静态资源及登录相关） -->
+    <security:http pattern="/**/*.css" security="none"></security:http>
+    <security:http pattern="/**/*.jpg" security="none"></security:http>
+    <security:http pattern="/**/*.jpeg" security="none"></security:http>
+    <security:http pattern="/**/*.gif" security="none"></security:http>
+    <security:http pattern="/**/*.png" security="none"></security:http>
+    <security:http pattern="/**/*.js" security="none"></security:http>
+
+    <security:http pattern="/login.jsp" security="none"></security:http>
+    <security:http pattern="/index.jsp" security="none"></security:http>
+    <security:http pattern="/getCode" security="none" /><!-- 不过滤验证码 -->
+    <security:http pattern="/test/**" security="none"></security:http><!-- 不过滤测试内容 -->
+
+    <!-- 配置资源权限信息 -->
+    <security:http auto-config="true" use-expressions="false">
+        <security:intercept-url pattern="/admin.jsp" access="ROLE_MoonFollow_Admin"/>
+        <security:intercept-url pattern="/**" access="ROLE_MoonFollow,ROLE_MoonFollow_Admin"/>
+
+        <!-- 配置登出 -->
+        <!-- 有时候，你会发现，就算重启了 Tomcat ，session 也不会过期，那么你需要配置退出时，session 过期。 -->
+        <security:logout logout-url="/logoutSecurity" invalidate-session="true" delete-cookies="JSESSIONID"/>
+        <!-- 在配置登出时，如果不把 csrf 设置为 true 的话，那么登出时的链接将会发生 404 错误。 -->
+        <security:csrf disabled="true"/>
+    </security:http>
+
+    <!-- 配置用户角色信息 -->
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:user-service >
+                <security:user name="MoonFollow" password="123" authorities="ROLE_MoonFollow"/>
+                <security:user name="Admin" password="123" authorities="ROLE_MoonFollow_Admin"/>
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
+</beans>
