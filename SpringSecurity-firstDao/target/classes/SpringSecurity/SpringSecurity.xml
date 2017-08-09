@@ -23,8 +23,8 @@
 
     <!-- 配置资源权限信息 -->
     <security:http auto-config="true" use-expressions="false">
-        <security:intercept-url pattern="/admin.jsp" access="ROLE_MoonFollow_Admin"/>
-        <security:intercept-url pattern="/**" access="ROLE_MoonFollow,ROLE_MoonFollow_Admin"/>
+        <security:intercept-url pattern="/admin.jsp" access="ROLE_ADMIN"/>
+        <security:intercept-url pattern="/**" access="ROLE_ADMIN,ROLE_USER"/>
 
         <!-- 配置登出 -->
         <!-- 有时候，你会发现，就算重启了 Tomcat ，session 也不会过期，那么你需要配置退出时，session 过期。 -->
@@ -35,11 +35,7 @@
 
     <!-- 配置用户角色信息 -->
     <security:authentication-manager>
-        <!-- user-service-ref="customUserService" -->
-        <security:authentication-provider>
-            <security:user-service>
-                <security:user name="Admin" authorities="ROLE_MoonFollow_Admin" password="123"/>
-            </security:user-service>
+        <security:authentication-provider user-service-ref="customUserService">
         </security:authentication-provider>
     </security:authentication-manager>
 
