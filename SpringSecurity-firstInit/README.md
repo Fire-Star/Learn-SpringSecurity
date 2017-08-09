@@ -9,9 +9,9 @@ _学习SpringSecurity时，写的小案例。_
 ## Maven导包
 通过Maven方式导入SpringSecurity的包。
 
-代码：
 
 `
+
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -44,5 +44,4 @@ _学习SpringSecurity时，写的小案例。_
       <artifactId>spring-security-web</artifactId>
       <version>${springSecurity.version}</version>
 </dependency>
-
 `
