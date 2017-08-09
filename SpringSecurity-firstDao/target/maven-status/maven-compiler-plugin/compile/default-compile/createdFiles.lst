@@ -1,0 +1,8 @@
+cn\domarvel\po\Role.class
+cn\domarvel\po\User.class
+cn\domarvel\pocustom\UserCustom.class
+cn\domarvel\dao\UserMapper.class
+cn\domarvel\springsecurity\model\CustomUserService.class
+cn\domarvel\dao\RoleMapper.class
+cn\domarvel\dao\UserRoleMapper.class
+cn\domarvel\web\controller\TestUserController.class
