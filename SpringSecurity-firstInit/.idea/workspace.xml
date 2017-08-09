@@ -745,7 +745,11 @@
       <updated>1502168174136</updated>
       <workItem from="1502168177846" duration="3089000" />
       <workItem from="1502242326897" duration="5995000" />
+<<<<<<< HEAD
       <workItem from="1502249005015" duration="4511000" />
+=======
+      <workItem from="1502249005015" duration="3410000" />
+>>>>>>> fa9024e0962e09d57d0415c44a469163cb079805
     </task>
     <task id="LOCAL-00001" summary="SpringSecurity 通过命名空间配置成功，现在尝试把资源+权限和用户+角色配置到数据库里面去。">
       <created>1502247577601</created>
@@ -765,7 +769,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="13595000" />
+=======
+    <option name="totallyTimeSpent" value="12494000" />
+>>>>>>> fa9024e0962e09d57d0415c44a469163cb079805
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />

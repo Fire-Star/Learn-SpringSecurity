@@ -153,6 +153,9 @@ SpringSecurity的命名空间配置可以写入Spring的配置文件中，所以
 <security:intercept-url pattern="/**" access="ROLE_MoonFollow,ROLE_MoonFollow_Admin"/>
 ```
 
+
 最后你只需要运行我的GitHub项目就能够看到效果了。
+
+>>>>>>> fa9024e0962e09d57d0415c44a469163cb079805
 =======
 >>>>>>> 5f071671f8cbb230bd26cdc88b9ab3c64b981127
