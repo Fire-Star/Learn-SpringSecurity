@@ -1,11 +1,23 @@
 package cn.domarvel.springsecurity.model;
 
 import cn.domarvel.dao.UserMapper;
+import cn.domarvel.dao.UserRoleMapper;
+import cn.domarvel.po.Role;
+import cn.domarvel.pocustom.UserCustom;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.enabled;
 
 /**
  * Created by Administrator on 2017/8/9.
@@ -16,9 +28,32 @@ public class CustomUserService implements UserDetailsService{
     @Autowired
     private UserMapper userMapper;
 
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    @Autowired
+    private UserRoleMapper userRoleMapper;
 
-        return null;
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        UserCustom requestMessage = new UserCustom(username,"");
+        String password = userMapper.findUserByUsername(requestMessage).getPassword();
+        boolean enabled = true;
+        boolean accountNonLoked = true;
+        boolean accountNonExpired = true;
+        boolean credentialsNonExipred = true;
+
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+
+        List<Role> roles = userRoleMapper.findRolesByUsername(requestMessage);
+
+        if (roles == null) {
+            return null;
+        }
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getRname()));
+        }
+
+        User user = new User(username,password,enabled,accountNonExpired,credentialsNonExipred,accountNonLoked,authorities);
+
+        return user;
     }
 }
