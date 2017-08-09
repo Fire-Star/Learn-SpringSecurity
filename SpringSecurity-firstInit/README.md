@@ -45,8 +45,6 @@ _学习SpringSecurity时，写的小案例。_
       <version>${springSecurity.version}</version>
 </dependency>
 ```
-<<<<<<< HEAD
-
 ## 在web.xml中引入SpringSecurity
 
 ```
@@ -153,15 +151,9 @@ SpringSecurity的命名空间配置可以写入Spring的配置文件中，所以
 <security:intercept-url pattern="/**" access="ROLE_MoonFollow,ROLE_MoonFollow_Admin"/>
 ```
 
-<<<<<<< HEAD
 
 最后你只需要运行我的GitHub项目就能够看到效果了。
 
-=======
-<<<<<<< HEAD
-最后你只需要运行我的GitHub项目就能够看到效果了。
-=======
-最后你只需要运行项目就能够看到效果了。
 >>>>>>> b5a9e378bcb99c81e4eb3702158b01f24107eaec
 >>>>>>> fa9024e0962e09d57d0415c44a469163cb079805
 =======
