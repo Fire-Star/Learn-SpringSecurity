@@ -2,7 +2,10 @@ F:\IDEAForJavaCode\test03\SpringSecurity-firstDao\src\main\java\cn\domarvel\po\U
 F:\IDEAForJavaCode\test03\SpringSecurity-firstDao\src\main\java\cn\domarvel\web\controller\TestUserController.java
 F:\IDEAForJavaCode\test03\SpringSecurity-firstDao\src\main\java\cn\domarvel\springsecurity\model\CustomUserService.java
 F:\IDEAForJavaCode\test03\SpringSecurity-firstDao\src\main\java\cn\domarvel\dao\UserMapper.java
+F:\IDEAForJavaCode\test03\SpringSecurity-firstDao\src\main\java\cn\domarvel\dao\ResMapper.java
 F:\IDEAForJavaCode\test03\SpringSecurity-firstDao\src\main\java\cn\domarvel\po\Role.java
 F:\IDEAForJavaCode\test03\SpringSecurity-firstDao\src\main\java\cn\domarvel\pocustom\UserCustom.java
+F:\IDEAForJavaCode\test03\SpringSecurity-firstDao\src\main\java\cn\domarvel\springsecurity\model\URLFilterInvocationSecurityMetadataSource.java
 F:\IDEAForJavaCode\test03\SpringSecurity-firstDao\src\main\java\cn\domarvel\dao\RoleMapper.java
+F:\IDEAForJavaCode\test03\SpringSecurity-firstDao\src\main\java\cn\domarvel\po\Res.java
 F:\IDEAForJavaCode\test03\SpringSecurity-firstDao\src\main\java\cn\domarvel\dao\UserRoleMapper.java

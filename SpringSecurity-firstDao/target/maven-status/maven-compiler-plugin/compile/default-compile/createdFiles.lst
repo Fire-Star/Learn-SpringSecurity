@@ -1,8 +1,13 @@
-cn\domarvel\po\Role.class
 cn\domarvel\po\User.class
+cn\domarvel\dao\ResRoleMapper.class
+cn\domarvel\pocustom\ResCustom.class
+cn\domarvel\springsecurity\model\URLFilterInvocationSecurityMetadataSource.class
 cn\domarvel\pocustom\UserCustom.class
-cn\domarvel\dao\UserMapper.class
 cn\domarvel\springsecurity\model\CustomUserService.class
 cn\domarvel\dao\RoleMapper.class
 cn\domarvel\dao\UserRoleMapper.class
 cn\domarvel\web\controller\TestUserController.class
+cn\domarvel\po\Role.class
+cn\domarvel\po\Res.class
+cn\domarvel\dao\ResMapper.class
+cn\domarvel\dao\UserMapper.class

@@ -23,8 +23,8 @@
 
     <!-- 配置资源权限信息 -->
     <security:http auto-config="true" use-expressions="false">
-        <security:intercept-url pattern="/admin.jsp" access="ROLE_ADMIN"/>
-        <security:intercept-url pattern="/**" access="ROLE_ADMIN,ROLE_USER"/>
+
+        <security:custom-filter ref="filterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR"/>
 
         <!-- 配置登出 -->
         <!-- 有时候，你会发现，就算重启了 Tomcat ，session 也不会过期，那么你需要配置退出时，session 过期。 -->
@@ -34,9 +34,32 @@
     </security:http>
 
     <!-- 配置用户角色信息 -->
-    <security:authentication-manager>
+    <security:authentication-manager alias="authenticationManagerw">
         <security:authentication-provider user-service-ref="customUserService">
         </security:authentication-provider>
     </security:authentication-manager>
 
+    <bean id="MyaccessManager" class="org.springframework.security.access.vote.AffirmativeBased">
+        <constructor-arg name="decisionVoters">
+            <list>
+                <ref bean="roleVoter"/>
+                <ref bean="authVoter"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter">
+        <property name="rolePrefix" value="ROLE_"/>
+    </bean>
+
+    <bean id="authVoter" class="org.springframework.security.access.vote.AuthenticatedVoter"/>
+
+    <bean id="securityMetadataSource" class="cn.domarvel.springsecurity.model.URLFilterInvocationSecurityMetadataSource" />
+    
+    <!-- 数据库管理url -->
+    <bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+        <property name="accessDecisionManager" ref="MyaccessManager"></property>
+        <property name="authenticationManager" ref="authenticationManagerw"></property>
+        <property name="securityMetadataSource" ref="securityMetadataSource"></property>
+    </bean>
 </beans>
