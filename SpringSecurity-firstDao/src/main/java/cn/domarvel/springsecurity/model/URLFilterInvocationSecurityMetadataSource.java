@@ -20,7 +20,12 @@ public class URLFilterInvocationSecurityMetadataSource implements FilterInvocati
     //权限集合
     private Map<String, Collection<ConfigAttribute>> requestMap;
 
-
+    /**
+     * 2、afterPropertiesSet方法，初始化bean的时候执行，
+     * 可以针对某个具体的bean进行配置。afterPropertiesSet 必须实现 InitializingBean接口。
+     * 实现 InitializingBean接口必须实现afterPropertiesSet方法。
+     * @throws Exception
+     */
     @Override
     public void afterPropertiesSet() throws Exception {
         requestMap = loadAllResource();
@@ -71,6 +76,13 @@ public class URLFilterInvocationSecurityMetadataSource implements FilterInvocati
 
         return result;
     }
+
+    /**
+     * 每次用户登录时，都会调用该方法。你可以查看方法发里面的输出！！！
+     * @param object
+     * @return
+     * @throws IllegalArgumentException
+     */
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
         String url = ((FilterInvocation)object).getRequestUrl();
@@ -81,9 +93,16 @@ public class URLFilterInvocationSecurityMetadataSource implements FilterInvocati
         return requestMap.get(url);
     }
 
+    /**
+     * getAllConfigAttributes方法如果返回了所有定义的权限资源，
+     * Spring Security会在启动时校验每个ConfigAttribute是否配置正确，不需要校验直接返回null。
+     * @return
+     */
     @Override
     public Collection<ConfigAttribute> getAllConfigAttributes() {
         Collection<ConfigAttribute> allConfigAttrs = new ArrayList<>();
+
+        System.out.println("调用了 getAllConfigAttributes()方法！！！");
 
         Set<String> set = requestMap.keySet();
 
@@ -94,6 +113,13 @@ public class URLFilterInvocationSecurityMetadataSource implements FilterInvocati
         return allConfigAttrs;
     }
 
+    /**
+     * supports方法返回类对象是否支持校验，
+     * web项目一般使用FilterInvocation来判断，或者直接返回true。
+     * 在上面我们主要定义了两个权限码：
+     * @param clazz
+     * @return
+     */
     @Override
     public boolean supports(Class<?> clazz) {
         return FilterInvocation.class.isAssignableFrom(clazz);
