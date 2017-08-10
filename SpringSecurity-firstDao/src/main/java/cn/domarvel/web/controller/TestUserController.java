@@ -1,8 +1,7 @@
 package cn.domarvel.web.controller;
 
-import cn.domarvel.dao.RoleMapper;
-import cn.domarvel.dao.UserMapper;
-import cn.domarvel.dao.UserRoleMapper;
+import cn.domarvel.dao.*;
+import cn.domarvel.po.Res;
 import cn.domarvel.po.Role;
 import cn.domarvel.po.User;
 import cn.domarvel.pocustom.UserCustom;
@@ -31,6 +30,9 @@ public class TestUserController {
 
     @Autowired
     private UserRoleMapper userRoleMapper;
+
+    @Autowired
+    private ResMapper resMapper;
 
     @RequestMapping("/test/showAllUser")
     public void showAllUser(HttpServletResponse response){
@@ -78,6 +80,60 @@ public class TestUserController {
         for (Role role : roles) {
             try {
                 response.getWriter().println(userCustom.getUsername()+"<---->"+role.getRname());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @RequestMapping("/test/showAllRes")
+    public void showAllRes(HttpServletResponse response){
+        //设置响应的编码以及响应内容编码。
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        //向页面输出内容。
+        List<Res> res = resMapper.findAllRes();
+        for (Res resI : res) {
+            try {
+                response.getWriter().println(resI.toString());
+                response.getWriter().println("<br>");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Autowired
+    private ResRoleMapper resRoleMapper;
+
+    @RequestMapping("/test/showRolesByRes")
+    public void showRolesByRes(HttpServletResponse response,Res res){
+        //设置响应的编码以及响应内容编码。
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        if(res==null || (res!=null && res.getRes_url()==null)){
+            try {
+                response.getWriter().println("亲爱的 Joy ，你是不是犯傻了，你都还没有告诉我资源名称呢。");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+        List<Role> roles = resRoleMapper.findAllRolesByRes(res);
+
+        if (roles == null||(roles!=null && roles.size()==0)) {
+            try {
+                response.getWriter().println("亲爱的 Joy ，我的记忆中还没有关于该 "+res.getRes_url()+" 资源的信息呢。");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+
+        for (Role role : roles) {
+            try {
+                response.getWriter().println(role.getRname()+"<br>");
             } catch (IOException e) {
                 e.printStackTrace();
             }

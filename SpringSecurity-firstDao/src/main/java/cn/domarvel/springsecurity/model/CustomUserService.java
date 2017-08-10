@@ -35,7 +35,12 @@ public class CustomUserService implements UserDetailsService{
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         UserCustom requestMessage = new UserCustom(username,"");
-        String password = userMapper.findUserByUsername(requestMessage).getPassword();
+
+        cn.domarvel.po.User resultUser = userMapper.findUserByUsername(requestMessage);
+        if (resultUser == null) {
+            return null;
+        }
+        String password = resultUser.getPassword();
         boolean enabled = true;
         boolean accountNonLoked = true;
         boolean accountNonExpired = true;
