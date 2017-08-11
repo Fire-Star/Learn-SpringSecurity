@@ -5,6 +5,7 @@ _学习SpringSecurity时，写的小案例。_
 
 主要功能实现都是归功于该博客：http://blog.csdn.net/jaune161/article/details/17639305
 
+数据库文件下载：https://github.com/Fire-Star/Learn-SpringSecurity/blob/master/SpringSecurity-firstDao/springsecurity.sql
 
 你只需要写一个类，就是下面的类，再把该类配置一下(配置在SpringSecurity.xml里面)就能够实现上面的目标了。
 该打注释的地方，我写了的，祝福你能够看懂，谢谢！！！
