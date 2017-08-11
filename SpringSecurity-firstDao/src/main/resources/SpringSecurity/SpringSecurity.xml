@@ -20,7 +20,17 @@
     <security:http pattern="/index.jsp" security="none"></security:http>
     <security:http pattern="/getCode" security="none" /><!-- 不过滤验证码 -->
     <security:http pattern="/test/**" security="none"></security:http><!-- 不过滤测试内容 -->
+    <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <!-- http://www.jianshu.com/p/95103b29c0c2 -->
+        <!-- https://waylau.gitbooks.io/spring-boot-tutorial/docs/security-in-action.html -->
+        <property name="additionalDialects">
+            <set>
+                <!-- Note the package would change to 'springsecurity3' if you are using that version -->
+                <bean class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect"/>
+            </set>
+        </property>
 
+    </bean>
     <!-- 配置资源权限信息 -->
     <security:http auto-config="true" use-expressions="false">
 
