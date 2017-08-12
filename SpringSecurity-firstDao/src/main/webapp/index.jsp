@@ -9,12 +9,12 @@
 <a href="user.jsp">用户界面</a><br><br>
 <a href="admin.jsp">管理员界面</a><br><br>
 <a href="logoutSecurity">登出</a><br>
-<security:authentication property="principal.username"></security:authentication>
+
 <%-- ifAnyGranted="ROLE_USER" 这种表示法已经被弃用了！！！ --%>
-<security:authorize access="hasRole('ROLE_USER')">
+<security:authorize access="hasAnyRole('ROLE_USER,ROLE_ADMIN')">
     <a href="#">用户界面的秘密通道</a><br>
 </security:authorize>
-<security:authorize access="hasRole('ROLE_ADMIN')">
+<security:authorize access="hasAnyRole('ROLE_ADMIN')">
     <a href="#">管理员界面的秘密通道</a><br>
 </security:authorize>
 </body>

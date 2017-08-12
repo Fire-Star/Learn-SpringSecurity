@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by Administrator on 2017/8/9.
  */
@@ -56,7 +58,6 @@ public class CustomUserService implements UserDetailsService{
         }
 
         User user = new User(username,password,enabled,accountNonExpired,credentialsNonExipred,accountNonLoked,authorities);
-
         return user;
     }
 }

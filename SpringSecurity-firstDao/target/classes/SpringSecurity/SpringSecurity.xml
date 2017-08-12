@@ -17,9 +17,17 @@
     <security:http pattern="/**/*.js" security="none"></security:http>
 
     <security:http pattern="/login.jsp" security="none"></security:http>
-    <security:http pattern="/index.jsp" security="none"></security:http>
+    <!-- 这里必须要让index.jsp过滤，否则对于不同权限显示不同资源会没有效果！！！ -->
+    <!--<security:http pattern="/index.jsp" security="none"></security:http>-->
     <security:http pattern="/getCode" security="none" /><!-- 不过滤验证码 -->
     <security:http pattern="/test/**" security="none"></security:http><!-- 不过滤测试内容 -->
+
+
+    <!--<bean id="webInvocationFilter"
+          class="org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator">
+        <constructor-arg ref="filterSecurityInterceptor" />
+    </bean>-->
+    <bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
 
     <!-- 配置资源权限信息 -->
     <security:http auto-config="true" use-expressions="false">
