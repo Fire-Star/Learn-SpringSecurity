@@ -200,3 +200,27 @@ public class URLFilterInvocationSecurityMetadataSource implements FilterInvocati
 </beans>
 
 ```
+
+
+### 不同权限在页面显示不同内容
+
+首先在SpringSecurity.xml中配置如下内容：
+
+```
+    <!-- 要让页面的不同权限显示不同内容，你需要写上这个 -->
+    <bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+```
+
+之后在页面写：
+
+```
+<%-- ifAnyGranted="ROLE_USER" 这种表示法已经被弃用了！！！ --%>
+<security:authorize access="hasAnyRole('ROLE_USER,ROLE_ADMIN')">
+    <a href="#">用户界面的秘密通道</a><br>
+</security:authorize>
+<security:authorize access="hasAnyRole('ROLE_ADMIN')">
+    <a href="#">管理员界面的秘密通道</a><br>
+</security:authorize>
+```
+
+好了，尝试运行吧，觉得不会有问题的！！！
