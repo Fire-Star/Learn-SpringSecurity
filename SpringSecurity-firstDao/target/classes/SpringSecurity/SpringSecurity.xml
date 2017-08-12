@@ -22,15 +22,13 @@
     <security:http pattern="/getCode" security="none" /><!-- 不过滤验证码 -->
     <security:http pattern="/test/**" security="none"></security:http><!-- 不过滤测试内容 -->
 
-
-    <!--<bean id="webInvocationFilter"
-          class="org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator">
-        <constructor-arg ref="filterSecurityInterceptor" />
-    </bean>-->
+    <!-- 要让页面的不同权限显示不同内容，你需要写上这个 -->
     <bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
 
     <!-- 配置资源权限信息 -->
     <security:http auto-config="true" use-expressions="false">
+        <!-- 定义记住我功能，通过user-service-ref指定将要使用的UserDetailsService-->
+        <security:remember-me key="elim" user-service-ref="customUserService"/>
 
         <security:custom-filter ref="filterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR"/>
 

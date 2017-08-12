@@ -27,6 +27,8 @@
 
     <!-- 配置资源权限信息 -->
     <security:http auto-config="true" use-expressions="false">
+        <!-- 定义记住我功能，通过user-service-ref指定将要使用的UserDetailsService-->
+        <security:remember-me key="elim" user-service-ref="customUserService"/>
 
         <security:custom-filter ref="filterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR"/>
 
