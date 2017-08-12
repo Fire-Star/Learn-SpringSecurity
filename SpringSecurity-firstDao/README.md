@@ -224,3 +224,17 @@ public class URLFilterInvocationSecurityMetadataSource implements FilterInvocati
 ```
 
 好了，尝试运行吧，觉得不会有问题的！！！
+
+
+### 相关属性介绍
+
+配置登录相关
+login-page :实际的登录界面。
+login-processing-url:对应登录表单的 action
+username-parameter:对应登录表单的 登录名 文本框的name属性值。
+password-parameter:对应登录表单的 密码 文本框的name 属性值。
+default-target-url：若在登录前，没有访问受保护的页面（即：直接访问的是登录页面），则登录成功后的响应页面。默认为index.jsp 或者 index.html
+always-use-default-target:只要登录成功就响应该属性指定的页面。默认情况下，若在登录前，访问了受保护的页面，则登录成功后，响应受保护页面。
+authentication-failure-url:登录失败的响应页面。
+authentication-success-handler-ref:指向AuthenticationSuccessHandler Bean 。作用为登录成功后，SpringSecurity将调用AuthenticationSuccessHandler Bean 的 onAuthenticationSuccess方法，此时将忽略 default-target-url 和 always-use-default-target
+authentication-failure-handler-ref:类似上面这个。
