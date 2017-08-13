@@ -6,6 +6,8 @@ import cn.domarvel.po.Role;
 import cn.domarvel.po.User;
 import cn.domarvel.pocustom.UserCustom;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -34,7 +36,9 @@ public class TestUserController {
     @Autowired
     private ResMapper resMapper;
 
+
     @RequestMapping("/test/showAllUser")
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     public void showAllUser(HttpServletResponse response){
         UserCustom userCustom = new UserCustom("MoonFollow","");
         User user = userMapper.findUserByUsername(userCustom);
