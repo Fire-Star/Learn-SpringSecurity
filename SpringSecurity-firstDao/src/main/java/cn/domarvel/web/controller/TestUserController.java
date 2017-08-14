@@ -5,6 +5,7 @@ import cn.domarvel.po.Res;
 import cn.domarvel.po.Role;
 import cn.domarvel.po.User;
 import cn.domarvel.pocustom.UserCustom;
+import cn.domarvel.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,6 +29,9 @@ public class TestUserController {
     private UserMapper userMapper;
 
     @Autowired
+    private TestService testService;
+
+    @Autowired
     private RoleMapper roleMapper;
 
     @Autowired
@@ -39,7 +43,7 @@ public class TestUserController {
     @RequestMapping("/test/showAllUser")
     public void showAllUser(HttpServletResponse response){
         UserCustom userCustom = new UserCustom("MoonFollow","");
-        User user = userMapper.findUserByUsername(userCustom);
+        User user = testService.findUserByUsername(userCustom);
         try {
             response.getWriter().println(user.toString());
         } catch (IOException e) {

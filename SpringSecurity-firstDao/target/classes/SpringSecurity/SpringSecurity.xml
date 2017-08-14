@@ -76,4 +76,10 @@
         <property name="authenticationManager" ref="authenticationManagerw"></property>
         <property name="securityMetadataSource" ref="securityMetadataSource"></property>
     </bean>
+
+
+
+    <!-- 视图解析器就用默认的 -->
+
+
 </beans>

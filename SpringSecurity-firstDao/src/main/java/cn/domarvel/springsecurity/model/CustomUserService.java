@@ -36,7 +36,9 @@ public class CustomUserService implements UserDetailsService{
 
         UserCustom requestMessage = new UserCustom(username,"");
 
+        System.out.println(userMapper);
         cn.domarvel.po.User resultUser = userMapper.findUserByUsername(requestMessage);
+        System.out.println("========="+resultUser);
         if (resultUser == null) {
             return null;
         }

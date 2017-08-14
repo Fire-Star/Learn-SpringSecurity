@@ -17,7 +17,9 @@
 
     <!-- 视图解析器就用默认的 -->
 
-    <!-- 开启 SpringSecurity 注解，因为要扫描Spring的Bean里面的注解，所以要在这里配置！ -->
+    <!-- 开启 SpringSecurity 注解，注意：因为要扫描Spring的注解，所以我要在这里配置打开SpringSecurity扫描
+        还有一点，在整个应用中，只能有一个地方配置这个内容！！
+    -->
     <security:global-method-security
             pre-post-annotations="enabled"
             jsr250-annotations="enabled"

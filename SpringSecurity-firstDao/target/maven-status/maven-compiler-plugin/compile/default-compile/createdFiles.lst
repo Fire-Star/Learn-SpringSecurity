@@ -9,5 +9,6 @@ cn\domarvel\dao\UserRoleMapper.class
 cn\domarvel\web\controller\TestUserController.class
 cn\domarvel\po\Role.class
 cn\domarvel\po\Res.class
+cn\domarvel\service\TestService.class
 cn\domarvel\dao\ResMapper.class
 cn\domarvel\dao\UserMapper.class
