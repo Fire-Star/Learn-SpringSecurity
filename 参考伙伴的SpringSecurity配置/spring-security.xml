@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<!-- 配置不过滤的资源（静态资源及登录相关） -->
+	<sec:http pattern="/resources/**" security="none"></sec:http>
+	<!-- <sec:http pattern="/**/*.jpg" security="none"></sec:http>
+	<sec:http pattern="/**/*.jpeg" security="none"></sec:http>
+	<sec:http pattern="/**/*.gif" security="none"></sec:http>
+	<sec:http pattern="/**/*.png" security="none"></sec:http>
+	<sec:http pattern="/js/*.js" security="none"></sec:http> -->
+
+	<sec:http pattern="/login.jsp" security="none"></sec:http>
+	<sec:http pattern="/getCode" security="none" /><!-- 不过滤验证码 -->
+	<!-- <sec:http pattern="/goWebsocket" security="none"></sec:http> -->
+	<sec:http pattern="/test/**" security="none"></sec:http><!-- 不过滤测试内容 -->
+	<sec:http pattern="/access_denied.jsp" security="none"></sec:http>
+	
+	<sec:http auto-config="true" access-decision-manager-ref="MyaccessManager" access-denied-page="/access_denied.jsp">
+		<sec:custom-filter ref="filterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR"/>
+		<!-- <sec:intercept-url pattern="/app.jsp" access="ROLE_USER"/>
+		<sec:intercept-url pattern="/user/**" access="ROLE_USER"/>
+		<sec:intercept-url pattern="/**" access="ROLE_USER"/> -->
+		<sec:logout invalidate-session="true" logout-success-url="/login.jsp" logout-url="/logoutService"/>
+		<sec:form-login login-page="/login.jsp" authentication-failure-url="/login.jsp"
+			default-target-url="/index.jsp"
+			login-processing-url="/login.do"
+			username-parameter="username"
+			password-parameter="password"
+			authentication-success-handler-ref="LoginSuccessHandler"
+			authentication-failure-handler-ref="LoginFailureHandler"/>
+	</sec:http>
+	<bean id="SysUsersDetailServer" class="com.libo.server.SysUsersDetailServer">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+ 	<sec:authentication-manager alias="authenticationManagerw">
+		<sec:authentication-provider user-service-ref="SysUsersDetailServer">
+			<!-- <sec:user-service>
+				<sec:user name="admin" password="admin" authorities="ROLE_ADMIN"/>
+				<sec:user name="app" password="123456" authorities="ROLE_SERVICE"/>
+			</sec:user-service> -->
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+
+	<!-- 启动用户缓存 -->
+	<bean id="userCache" 
+		class="org.springframework.security.core.userdetails.cache.EhCacheBasedUserCache">
+		<property name="cache" ref="userEhcache"></property>
+	</bean>
+	
+	<bean id="userEhcache" 
+		class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheName" value="userCache"/>
+		<property name="cacheManager" ref="cacheManager"/>
+	</bean>
+	
+	<bean id="cacheManager"
+		 class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+	</bean>
+	
+	<bean id="MyaccessManager" class="org.springframework.security.access.vote.AffirmativeBased">
+		<constructor-arg name="decisionVoters">
+			<list>
+				<ref bean="roleVoter"/>
+				<ref bean="authVoter"/>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter">
+		<property name="rolePrefix" value="ROLE_"/>
+	</bean>
+	
+	<bean id="authVoter" class="org.springframework.security.access.vote.AuthenticatedVoter"/>
+	
+	<!-- 配置登陆成功后，后置处理 -->
+	<bean id="LoginSuccessHandler" class="com.libo.server.LoginSuccessHandler">
+		<property name="defaultTargetUrl" value="index.jsp"/>
+		<property name="forwardToUrl" value="false"/>
+	</bean>
+	
+	<!-- 登陆失败后置处理器 -->
+	<bean id="LoginFailureHandler" class="com.libo.server.LoginFailureHandler">
+		<property name="defaultTargetUrl" value="login.jsp"/>
+		<property name="forwardToUrl" value="true"/>
+	</bean>
+	
+	<!-- 数据库管理url -->
+	<bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+		<property name="accessDecisionManager" ref="MyaccessManager"></property>
+		<property name="authenticationManager" ref="authenticationManagerw"></property>
+		<property name="securityMetadataSource" ref="securityMetadataSource"></property>
+	</bean>
+	
+	<bean id="securityMetadataSource" class="com.libo.server.DataBaseUrl"></bean>
+</beans>
