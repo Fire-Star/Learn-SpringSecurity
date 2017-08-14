@@ -17,5 +17,8 @@
 <security:authorize access="hasAnyRole('ROLE_ADMIN')">
     <a href="#">管理员界面的秘密通道</a><br>
 </security:authorize>
+<security:authorize access="isAuthenticated()">
+    登录后的用户才能看到！！<br>
+</security:authorize>
 </body>
 </html>
