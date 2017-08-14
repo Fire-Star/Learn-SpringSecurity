@@ -16,4 +16,11 @@
     </context:component-scan>
 
     <!-- 视图解析器就用默认的 -->
+
+    <!-- 开启 SpringSecurity 注解，注意，该注解必须写在SpringMVC的配置文件中，否则 SpringSecurity 的注解会无效！ -->
+    <security:global-method-security
+            pre-post-annotations="enabled"
+            jsr250-annotations="enabled"
+            secured-annotations="enabled"
+    />
 </beans>
