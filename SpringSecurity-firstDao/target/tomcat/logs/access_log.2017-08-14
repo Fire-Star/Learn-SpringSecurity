@@ -38,3 +38,7 @@
 0:0:0:0:0:0:0:1 - - [14/Aug/2017:05:35:16 +0800] "GET /test03/login HTTP/1.1" 200 560 http-bio-8080-exec-9 2
 0:0:0:0:0:0:0:1 - - [14/Aug/2017:05:35:29 +0800] "POST /test03/login HTTP/1.1" 302 - http-bio-8080-exec-10 189
 0:0:0:0:0:0:0:1 - - [14/Aug/2017:05:35:29 +0800] "GET /test03/test/showAllUser HTTP/1.1" 200 45 http-bio-8080-exec-10 18
+0:0:0:0:0:0:0:1 - - [14/Aug/2017:09:35:07 +0800] "GET /test03 HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [14/Aug/2017:09:35:08 +0800] "GET /test03/ HTTP/1.1" 200 253 http-bio-8080-exec-3 646
+0:0:0:0:0:0:0:1 - - [14/Aug/2017:09:35:08 +0800] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-4 0
+0:0:0:0:0:0:0:1 - - [14/Aug/2017:09:35:23 +0800] "GET /test03/test/showAllUser HTTP/1.1" 200 45 http-bio-8080-exec-5 152

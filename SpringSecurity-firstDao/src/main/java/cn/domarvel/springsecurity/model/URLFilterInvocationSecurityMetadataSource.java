@@ -49,7 +49,7 @@ public class URLFilterInvocationSecurityMetadataSource implements FilterInvocati
     private ResRoleMapper resRoleMapper;
     /**
      * 该方法目的是查询数据库里面的 String(代表URL),和该 URL 所需要的权限 Collection<ConfigAttribute>
-     * @return 兄弟们，出墙啦！！！【ShadowSockes】
+     * @return
      */
     private Map<String,Collection<ConfigAttribute>> loadAllResource(){
         //声明一个缓存容器，缓存所有关于资源和权限的信息。

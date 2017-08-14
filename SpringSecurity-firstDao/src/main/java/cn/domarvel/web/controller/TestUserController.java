@@ -36,9 +36,7 @@ public class TestUserController {
     @Autowired
     private ResMapper resMapper;
 
-
     @RequestMapping("/test/showAllUser")
-    @PreAuthorize("hasAnyRole('ROLE_USER')")
     public void showAllUser(HttpServletResponse response){
         UserCustom userCustom = new UserCustom("MoonFollow","");
         User user = userMapper.findUserByUsername(userCustom);
