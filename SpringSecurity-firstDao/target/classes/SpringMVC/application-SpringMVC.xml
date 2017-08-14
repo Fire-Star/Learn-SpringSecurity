@@ -25,7 +25,7 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
-    <!-- 开启 SpringSecurity 注解，注意，该注解必须写在SpringMVC的配置文件中，否则 SpringSecurity 的注解会无效！ -->
+    <!-- 开启 SpringSecurity 注解，注意：因为要扫描SpringMVC的注解，所以我要在这里配置打开SpringSecurity扫描 -->
     <security:global-method-security
             pre-post-annotations="enabled"
             jsr250-annotations="enabled"

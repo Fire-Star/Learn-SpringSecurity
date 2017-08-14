@@ -36,9 +36,15 @@
 
         <!-- 配置登出 -->
         <!-- 有时候，你会发现，就算重启了 Tomcat ，session 也不会过期，那么你需要配置退出时，session 过期。 -->
+        <!-- 删除JSESSIONID是为了防止，浏览器用一个JSESSIONID进行两次登录！ -->
         <security:logout logout-url="/logoutSecurity" invalidate-session="true" delete-cookies="JSESSIONID"/>
         <!-- 在配置登出时，如果不把 csrf 设置为 true 的话，那么登出时的链接将会发生 404 错误。 -->
         <security:csrf disabled="true"/>
+
+        <!-- session-fixation-protection="newSession" 防止被固定Session攻击，原理：在登录成功后重新为用户创建一个Session -->
+        <security:session-management session-fixation-protection="newSession">
+            <security:concurrency-control max-sessions="1"/>
+        </security:session-management>
     </security:http>
 
     <!-- 配置用户角色信息 -->
